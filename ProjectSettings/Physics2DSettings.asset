@@ -4,25 +4,26 @@
 Physics2DSettings:
   m_ObjectHideFlags: 0
   serializedVersion: 5
-  m_Gravity: {x: 0, y: -9.81}
-  m_DefaultMaterial: {fileID: 0}
-  m_VelocityIterations: 8
-  m_PositionIterations: 3
-  m_VelocityThreshold: 1
-  m_MaxLinearCorrection: 0.2
-  m_MaxAngularCorrection: 8
-  m_MaxTranslationSpeed: 100
-  m_MaxRotationSpeed: 360
-  m_BaumgarteScale: 0.2
-  m_BaumgarteTimeOfImpactScale: 0.75
-  m_TimeToSleep: 0.5
-  m_LinearSleepTolerance: 0.01
-  m_AngularSleepTolerance: 2
-  m_DefaultContactOffset: 0.01
+  m_Gravity: {x: 0, y: -9.81}            # Standard Earth-like downward gravity in 2D
+  m_DefaultMaterial: {fileID: 0}         # Default PhysicsMaterial2D (none in this case)
+  m_VelocityIterations: 8               # Iterations to correct velocity for each physics update
+  m_PositionIterations: 3               # Iterations to correct position for each physics update
+  m_VelocityThreshold: 1                # Minimum velocity below which objects may be considered stationary
+  m_MaxLinearCorrection: 0.2            # Limits how far objects can be "nudged" in one step to resolve overlap
+  m_MaxAngularCorrection: 8             # Limits how many degrees an object can be rotated to correct overlap
+  m_MaxTranslationSpeed: 100            # Hard cap on how fast an object can move
+  m_MaxRotationSpeed: 360               # Hard cap on how quickly an object can rotate (degrees/sec)
+  m_BaumgarteScale: 0.2                 # Factor used to resolve penetrations
+  m_BaumgarteTimeOfImpactScale: 0.75    # Similar factor for continuous collision detection
+  m_TimeToSleep: 0.5                    # Time in seconds after which an inactive body can go to sleep
+  m_LinearSleepTolerance: 0.01          # Speed threshold below which a body's linear motion can be put to sleep
+  m_AngularSleepTolerance: 2            # Rotational speed threshold for putting a body to sleep
+  m_DefaultContactOffset: 0.01          # “Skin width” for collisions, helps prevent jitter by giving small overlap margin
+
   m_JobOptions:
     serializedVersion: 2
-    useMultithreading: 0
-    useConsistencySorting: 0
+    useMultithreading: 0                # Whether multithreaded 2D physics is enabled
+    useConsistencySorting: 0            # Whether contact pairs are re-sorted for consistent ordering
     m_InterpolationPosesPerJob: 100
     m_NewContactsPerJob: 30
     m_CollideContactsPerJob: 100
@@ -38,19 +39,22 @@ Physics2DSettings:
     m_IslandSolverJointCostScale: 10
     m_IslandSolverBodiesPerJob: 50
     m_IslandSolverContactsPerJob: 50
-  m_SimulationMode: 0
-  m_QueriesHitTriggers: 1
-  m_QueriesStartInColliders: 1
-  m_CallbacksOnDisable: 1
-  m_ReuseCollisionCallbacks: 1
-  m_AutoSyncTransforms: 0
-  m_AlwaysShowColliders: 0
-  m_ShowColliderSleep: 1
-  m_ShowColliderContacts: 0
-  m_ShowColliderAABB: 0
-  m_ContactArrowScale: 0.2
+
+  m_SimulationMode: 0                   # 0 => Update automatically each frame; 1 => Manual calls to Physics2D.Simulate()
+  m_QueriesHitTriggers: 1               # Whether raycasts/queries detect trigger colliders
+  m_QueriesStartInColliders: 1          # Whether a query "starting inside" a collider registers a hit
+  m_CallbacksOnDisable: 1               # Whether collision callbacks occur when a GameObject/Collider2D is disabled
+  m_ReuseCollisionCallbacks: 1          # Reuse contact manifolds for collision callbacks for performance
+  m_AutoSyncTransforms: 0               # If disabled, transforms won't auto-sync after physics step
+  m_AlwaysShowColliders: 0              # Editor-only: toggles whether colliders are always visible in Scene view
+  m_ShowColliderSleep: 1                # Editor-only: indicates sleeping colliders in Scene view
+  m_ShowColliderContacts: 0             # Editor-only: show contact points in Scene view
+  m_ShowColliderAABB: 0                 # Editor-only: show bounding boxes in Scene view
+  m_ContactArrowScale: 0.2              # Scale factor for contact arrow visualization in Editor
   m_ColliderAwakeColor: {r: 0.5686275, g: 0.95686275, b: 0.54509807, a: 0.7529412}
   m_ColliderAsleepColor: {r: 0.5686275, g: 0.95686275, b: 0.54509807, a: 0.36078432}
   m_ColliderContactColor: {r: 1, g: 0, b: 1, a: 0.6862745}
   m_ColliderAABBColor: {r: 1, g: 1, b: 0, a: 0.2509804}
+
+  # A long bitmask indicating which layers collide with each other
   m_LayerCollisionMatrix: ffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffff
